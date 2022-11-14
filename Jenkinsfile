@@ -1,5 +1,5 @@
 pipeline{
-    agent
+    agent {
         kubernetes {
             defaultContainer 'jdk'
     stages {
@@ -9,7 +9,8 @@ pipeline{
             sh 'java --version'
             container('podman') {
             sh 'podman --version'
-            
+
+            }
           }
         }
       }
