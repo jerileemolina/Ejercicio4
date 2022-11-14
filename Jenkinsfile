@@ -4,7 +4,10 @@ pipeline{
       stage("Prepare environment") {
           steps {
             echo ' -=- prepare build environment -=-'
-            sh 'mvn --version'
+            sh 'java --version'
+            container('podman') {
+                sh 'podman --version'
+        }
       }
     }
   }
