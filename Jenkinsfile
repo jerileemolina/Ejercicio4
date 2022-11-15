@@ -31,6 +31,75 @@ spec:
 
             }
           }
+
+      stage("Compile") {
+          steps {
+            echo ' -=- compile code -=-'
+          }
+      }
+
+      stage("Unit tests") {
+          steps {
+            echo ' -=- execute unit tests -=-'
+          }
+      }
+
+      stage("Mutation tests") {
+          steps {
+            echo ' -=- execute mutation tests -=-'
+          }
+      }
+
+
+      stage("Dependency vulnerarability scans") {
+          steps {
+            echo ' -=- dependency vulnerability scans -=-'
+          }
+      }
+
+
+      stage("Code Inspection") {
+          steps {
+            echo ' -=- Code Inspection -=-'
+          }
+      }
+
+      stage("Package") {
+          steps {
+            echo ' -=- Package -=-'
+          }
+      }
+
+      stage("Build & push container image") {
+          steps {
+            echo ' -=- build & push container image -=-'
+          }
+      }
+
+      stage("Run ephemeral test environment") {
+          steps {
+            echo ' -=- run ephemeral test environment -=-'
+          }
+      }
+
+      stage("Integration tests") {
+          steps {
+            echo ' -=- execute integration tests -=-'
+          }
+      }
+
+      stage("Performance tests") {
+          steps {
+            echo ' -=- execute performance tests -=-'
+          }
+      }
+
+      stage("Promote container image") {
+          steps {
+            echo ' -=- promote container image -=-'
+          }
+      }
+
+          }
         }
       }
-    }
