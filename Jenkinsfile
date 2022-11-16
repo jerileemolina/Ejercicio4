@@ -6,15 +6,24 @@ pipeline{
 apiVersion: v1
 kind: Pod
 spec:
-  securityContext:
-      runAsUser: 1001
-  containers:
+    securityContext:
+        runAsUser: 1001
+    containers:
     - name: jdk
       image: docker.io/eclipse-temurin:18.0.2.1_1-jdk
       command:
         - sleep
       args:
         - infinity
+    - name: podman
+      image: quay.io/containers/podman:v4.2.0
+      command:
+        - sleep
+      args:
+        - infinity
+      securityContext:
+        runAsUser: 0
+        privileged: true
 
 '''
 
@@ -108,11 +117,15 @@ spec:
                         usernamePassword(
                             credentialsId:'sp-terraform-credentials',
                             usernameVariable:'AAD_SERVICE_PRINCIPAL_CLIENT_ID',
-                            passwordVariable: 'AAD_SERVICE_PRINCIPAL_CLIENT_SECRET' )]) {
-
+                            passwordVariable: 'AAD_SERVICE_PRINCIPAL_CLIENT_SECRET')]) { 
                       sh "kubectl delete pod $(TEST_CONTAINER_NAME)"
                       sh "kubectl delete service $(TEST_CONTAINER_NAME)"
                       sh "kubectl delete service $(TEST_CONTAINER_NAME)-jacoco"
+                            
+                            
+                            }
+
+                      
                         
               }
             }
@@ -120,4 +133,3 @@ spec:
         }
       }
     }
-  }
